@@ -1,0 +1,11 @@
+{
+  "name": "synapse-assessment",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {},
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express-fileupload": "^1.5.2",
+    "node-fetch": "^3.3.2"
+  }
+}

@@ -1,18 +1,19 @@
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
 
-dotenv.config();
+dotenv.config({ path: './.env' });
 
-const AZURE_DI_ENDPOINT = process.env.AZURE_DI_ENDPOINT || '';
-const AZURE_DI_KEY = process.env.AZURE_DI_KEY || '';
+const AZURE_DI_ENDPOINT = process.env.AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT;
+const AZURE_DI_KEY = process.env.AZURE_DOCUMENT_INTELLIGENCE_KEY;
+
+if (!AZURE_DI_ENDPOINT || !AZURE_DI_KEY) {
+    throw new Error(`Azure Document Intelligence is NOT configured. Endpoint: ${AZURE_DI_ENDPOINT}, Key: ${AZURE_DI_KEY}`);
+}
+
 const API_VERSION = '2023-07-31';
 const MODEL_ID = process.env.AZURE_DI_MODEL || 'prebuilt-layout';
 
 export const ocrExtractor = async (base64Content) => {
-    if (!AZURE_DI_ENDPOINT || !AZURE_DI_KEY) {
-        throw new Error("Azure Document Intelligence keys or endpoint are not configured.");
-    }
-
     const buffer = Buffer.from(base64Content, 'base64');
 
     const analyzeUrl = `${AZURE_DI_ENDPOINT}/formrecognizer/documentModels/${MODEL_ID}:analyze?api-version=${API_VERSION}`;

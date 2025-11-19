@@ -1,29 +1,47 @@
+// backend/index.js
+
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import agentRoutes from './routes/agentRoutes.js';
-import connectDB from './db.js';
+import helmet from 'helmet';
 
+// Load environment variables from backend/.env
 dotenv.config({ path: './backend/.env' });
-connectDB();
 
 const app = express();
-const PORT = process.env.PORT || 8000;
 
-app.use(cors({
-    origin: 'http://localhost:3000', // Allow Next.js frontend
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-}));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+// Setup Helmet with Content Security Policy to allow connections from frontend
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", "http://localhost:3000", "http://localhost:8000"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:"],
+    },
+  })
+);
 
-app.use('/api/agent', agentRoutes);
+// Enable CORS for frontend at localhost:3000
+app.use(cors({ origin: 'http://localhost:3000' }));
 
-app.get('/', (req, res) => {
-    res.send('Synapse Agent Backend Running.');
+// Parse incoming JSON requests
+app.use(express.json());
+
+// Define your API route
+app.post('/api/agent/chat', (req, res) => {
+  // Implement your logic here
+  res.json({ message: 'Response from /api/agent/chat' });
 });
 
+// 404 Handler for any other unmatched routes
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+
+// Start the server on port from environment or 8000
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
-    console.log(`Synapse Backend listening on port ${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });

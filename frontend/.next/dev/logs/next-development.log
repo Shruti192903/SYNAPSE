@@ -1,53 +1,38 @@
-[00:00:00.762] Server  LOG      ✓ Ready in 519ms
-[00:00:04.521] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:58:17.469] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:58:50.923] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:08:30.890] Server  LOG      ✓ Compiled in 116ms
-[02:08:31.781] Browser ERROR   ./app/page.jsx:163:34
+[00:00:00.679] Server  LOG      ✓ Ready in 459ms
+[00:00:06.746] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:17.634] Browser ERROR   Streaming error: {}
+[00:01:28.127] Server  LOG      ✓ Compiled in 101ms
+[00:01:29.128] Browser ERROR   ./frontend/lib/streamingClient.js:80:1
 Parsing ecmascript source code failed
-  161 |                             
-  162 |                             {/* *** CENTERED MINIMAL UI (Vercel/Notion Vibe) *** */}
-> 163 |                             <div className="flex flex-col items-center justify-center min-h-[calc(100vh-100px)] text-center px-4 md:px-8 py-16">
-      |                                  ^^^^^^^^^
-  164 |                                 
-  165 |                                 <Card className="max-w-3xl w-full p-8 md:p-12 bg-card/70 shadow-2xl shadow-primary/10 rounded-2xl border border-border/50 transition-all duration-300 hover:shadow-primary/20">
-  166 |                                     
+  78 |         }
+  79 |     }
+> 80 | }
+     | ^
 
-Expected '</', got 'className'
+Expression expected
 
 Import traces:
   Client Component Browser:
-    ./app/page.jsx [Client Component Browser]
-    ./app/page.jsx [Server Component]
+    ./frontend/lib/streamingClient.js [Client Component Browser]
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
 
   Client Component SSR:
-    ./app/page.jsx [Client Component SSR]
-    ./app/page.jsx [Server Component]
-[02:08:53.413] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:13:25.297] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:25:19.289] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:38:15.005] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:54:34.296] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:27:39.429] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:31:22.053] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:13:33.193] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:15:42.052] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:20:21.634] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:23:22.956] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:33:53.299] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:36:11.349] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:38:20.997] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:44:06.793] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:48:57.325] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:50:01.475] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:52:06.316] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:56:24.696] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:58:00.344] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:01:11.274] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:07:54.782] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:08:36.326] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:10:55.370] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:12:21.136] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:13:26.024] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:17:31.011] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:20:09.772] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+    ./frontend/lib/streamingClient.js [Client Component SSR]
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:01:35.131] Server  LOG      ✓ Compiled in 109ms
+[00:01:51.541] Server  LOG      ✓ Compiled in 27ms
+[00:02:48.199] Browser ERROR   Fetch error: {}
+[00:02:48.199] Browser ERROR   Streaming error: {}
+[00:03:06.418] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:15.390] Browser ERROR   Fetch error: {}
+[00:03:15.390] Browser ERROR   Streaming error: {}
+[00:06:53.523] Server  LOG      ✓ Compiled in 116ms
+[00:07:09.067] Server  LOG        Reload env: .env
+[00:07:23.695] Server  LOG        Reload env: .env.local
+[00:07:39.328] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:45.683] Browser ERROR   Fetch error: {}
+[00:07:45.683] Browser ERROR   Streaming error: {}
+[00:18:53.810] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:20:53.532] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
