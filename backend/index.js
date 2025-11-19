@@ -1,47 +1,68 @@
-// backend/index.js
+// // // backend/index.js
+// // app.use(express.urlencoded({ limit: '50mb', extended: true }));
+// // import express from 'express';
+// // import cors from 'cors';
+// // import dotenv from 'dotenv';
+// // import helmet from 'helmet';
+// // import ocrRoutes from "./routes/ocrRoutes.js";
+// // app.use("/ocr", ocrRoutes);
 
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import helmet from 'helmet';
+// // // Load environment variables from backend/.env
+// // dotenv.config({ path: './backend/.env' });
 
-// Load environment variables from backend/.env
-dotenv.config({ path: './backend/.env' });
+// // const app = express();
+// // app.use("/api/agent", agentRoutes);
 
-const app = express();
+// // app.listen(8000, () => console.log("Server running on 8000"));
+// // // Setup Helmet with Content Security Policy to allow connections from frontend
+// // app.use(
+// //   helmet.contentSecurityPolicy({
+// //     directives: {
+// //       defaultSrc: ["'self'"],
+// //       connectSrc: ["'self'", "http://localhost:3000", "http://localhost:8000"],
+// //       scriptSrc: ["'self'"],
+// //       styleSrc: ["'self'", "'unsafe-inline'"],
+// //       imgSrc: ["'self'", "data:"],
+// //     },
+// //   })
+// // );
 
-// Setup Helmet with Content Security Policy to allow connections from frontend
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      connectSrc: ["'self'", "http://localhost:3000", "http://localhost:8000"],
-      scriptSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:"],
-    },
-  })
-);
+// // // Enable CORS for frontend at localhost:3000
+// // app.use(cors({ origin: 'http://localhost:3000' }));
 
-// Enable CORS for frontend at localhost:3000
-app.use(cors({ origin: 'http://localhost:3000' }));
+// // // Parse incoming JSON requests
+// // app.use(express.json());
 
-// Parse incoming JSON requests
+// // // Define your API route
+// // app.post('/api/agent/chat', (req, res) => {
+// //   // Implement your logic here
+// //   res.json({ message: 'Response from /api/agent/chat' });
+// // });
+// // app.use('/api/agent', agentRoutes);
+// // // 404 Handler for any other unmatched routes
+// // app.use((req, res) => {
+// //   res.status(404).json({ error: 'Route not found' });
+// // });
+
+// // // Start the server on port from environment or 8000
+// // const PORT = process.env.PORT || 8000;
+// // app.listen(PORT, () => {
+// //   console.log(`Server running at http://localhost:${PORT}`);
+// // });
+import express from "express";
+import cors from "cors";
+import agentRoutes from "./routes/agentRoutes.js";
+
+const app = express();      // Only once!
+
+app.use(cors());
 app.use(express.json());
 
-// Define your API route
-app.post('/api/agent/chat', (req, res) => {
-  // Implement your logic here
-  res.json({ message: 'Response from /api/agent/chat' });
-});
+app.use("/agent", agentRoutes);
 
-// 404 Handler for any other unmatched routes
 app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
+  res.status(404).json({ error: "Route not found" });
 });
 
-// Start the server on port from environment or 8000
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+app.listen(8000, () => console.log("Server running on 8000"));
+

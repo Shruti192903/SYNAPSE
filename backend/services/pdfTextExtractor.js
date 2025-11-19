@@ -1,33 +1,44 @@
 import * as pdfParse from 'pdf-parse';
 import { ocrExtractor } from './ocrExtractor.js';
 import { summarizeText } from './summarizeText.js';
+import dotenv from 'dotenv';
+import { Buffer } from 'buffer';
+
+dotenv.config();
 
 /**
- * Extract text from PDF (pdf-parse first, fallback to OCR), then summarize
+ * Placeholder for semantic chunking that relies on the stable LLM service.
  */
-export const pdfTextExtractor = async (base64Content, onToken) => {
+const semanticChunkingAndTableExtraction = async (fullText) => {
+    return fullText; 
+};
+
+export const pdfTextExtractor = async (base64Content, fileName) => {
     const pdfBuffer = Buffer.from(base64Content, 'base64');
 
     let fullText = '';
     try {
-        const data = await pdfParse.default(pdfBuffer);
+        // FIX: Safely access the pdf-parse function (handles both .default and root exports)
+        const parser = pdfParse.default || pdfParse; 
+        const data = await parser(pdfBuffer);
         fullText = data.text;
-
+        
         if (fullText.trim().length < 50) {
-            console.log("PDF text too short, falling back to OCR...");
-            throw new Error("PDF text extraction too short");
+             console.log("PDF text seems too short, falling back to OCR...");
+             throw new Error("Text extraction failed/was too short, attempting OCR.");
         }
     } catch (e) {
-        console.warn("pdf-parse failed, using OCR:", e.message);
-        fullText = await ocrExtractor(base64Content);
+        console.warn(`PDF-parse failed (${e.message}). Falling back to OCR.`);
+        // Call the external ocrExtractor service (Azure Document Intelligence - SIMULATED)
+        fullText = await ocrExtractor(base64Content, fileName); 
     }
-
+    
     if (!fullText.trim()) {
-        throw new Error("Could not extract text from PDF using both PDF parser and OCR");
+        throw new Error("Could not extract any meaningful text from the PDF using both text extraction and OCR.");
     }
 
-    // Summarize using non-streaming LLM
-    const summary = await summarizeText(fullText, onToken);
+    // 3. Post-process with LLM for structure/tables
+    const structuredText = await semanticChunkingAndTableExtraction(fullText);
 
-    return summary;
+    return structuredText;
 };

@@ -242,76 +242,39 @@ ScrollBar.displayName = __TURBOPACK__imported__module__$5b$project$5d2f$node_mod
 "[project]/lib/streamingClient.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-// Client-side utility for handling the streaming POST request
-/**
- * Fetches the streaming response from the Next.js API proxy route.
- * @param {FormData} formData - The payload including message and file.
- * @param {(chunk: {type: string, data: any}) => void} onChunk - Callback for each JSON Line chunk.
- * @returns {Promise<void>}
- */ __turbopack_context__.s([
-    "fetchAgentResponse",
-    ()=>fetchAgentResponse
+// export async function streamAgentResponse(body, onChunk) {
+//   const response = await fetch("/api/agent", {
+//     method: "POST",
+//     body: JSON.stringify(body),
+//   });
+//   const reader = response.body.getReader();
+//   const decoder = new TextDecoder();
+//   while (true) {
+//     const { done, value } = await reader.read();
+//     if (done) break;
+//     const chunk = decoder.decode(value);
+//     const lines = chunk.split("\n").filter(Boolean);
+//     for (const line of lines) {
+//       if (line.startsWith("data:")) {
+//         const json = JSON.parse(line.replace("data:", "").trim());
+//         onChunk(json);
+//       }
+//     }
+//   }
+// }
+__turbopack_context__.s([
+    "streamAgentResponse",
+    ()=>streamAgentResponse
 ]);
-async function fetchAgentResponse(formData, onChunk) {
-    const response = await fetch('/api/agent/route', {
-        method: 'POST',
-        body: formData
+async function streamAgentResponse(body) {
+    const response = await fetch(`${("TURBOPACK compile-time value", "http://localhost:8000")}/api/agent/run`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
     });
-    if (!response.ok) {
-        let errorText = await response.text();
-        try {
-            const errorJson = JSON.parse(errorText);
-            errorText = errorJson.error || errorText;
-        } catch (e) {
-        // not a JSON error
-        }
-        throw new Error(`Agent request failed: ${errorText}`);
-    }
-    if (!response.body) {
-        throw new Error("Received no response body from the agent.");
-    }
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder('utf-8');
-    let buffer = '';
-    while(true){
-        const { done, value } = await reader.read();
-        if (done) {
-            // Process any remaining data in the buffer
-            if (buffer.trim()) {
-                try {
-                    const finalChunk = JSON.parse(buffer);
-                    onChunk(finalChunk);
-                } catch (e) {
-                    console.error("Failed to parse final buffer chunk:", buffer, e);
-                }
-            }
-            break;
-        }
-        // Decode the chunk and add it to the buffer
-        buffer += decoder.decode(value, {
-            stream: true
-        });
-        // Process chunks line by line (JSON Lines format)
-        let lastNewlineIndex;
-        while((lastNewlineIndex = buffer.indexOf('\n')) !== -1){
-            const line = buffer.substring(0, lastNewlineIndex);
-            buffer = buffer.substring(lastNewlineIndex + 1); // Move buffer past the newline
-            if (line.trim()) {
-                try {
-                    const chunk = JSON.parse(line);
-                    onChunk(chunk);
-                    // Break the loop if we receive the final signal
-                    if (chunk.type === 'end' || chunk.type === 'error') {
-                        reader.cancel(); // Stop reading further
-                        return;
-                    }
-                } catch (e) {
-                    console.error("Failed to parse JSON chunk:", line, e);
-                // Discard the corrupted line
-                }
-            }
-        }
-    }
+    return response;
 }
 }),
 "[project]/components/StreamingResponse.jsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
@@ -1749,6 +1712,7 @@ function ChatPage() {
     const scrollRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const { toast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$use$2d$toast$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useToast"])();
     // Scroll logic: scrolls to the bottom whenever messages change
+    // Scroll logic: scrolls to the bottom whenever messages change
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (scrollRef.current) {
             scrollRef.current.scrollTo({
@@ -1806,7 +1770,7 @@ function ChatPage() {
                     placeholder
                 ]);
             // 3. Start streaming from the backend proxy
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$streamingClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["fetchAgentResponse"])(formData, (chunk)=>{
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$streamingClient$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["streamAgentResponse"])(formData, (chunk)=>{
                 setMessages((prev)=>{
                     const newMessages = [
                         ...prev
@@ -1884,25 +1848,25 @@ function ChatPage() {
                                 children: "Agent 🧠"
                             }, void 0, false, {
                                 fileName: "[project]/app/page.jsx",
-                                lineNumber: 149,
-                                columnNumber: 29
+                                lineNumber: 157,
+                                columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/page.jsx",
-                        lineNumber: 148,
-                        columnNumber: 17
+                        lineNumber: 156,
+                        columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ThemeToggle$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ThemeToggle"], {}, void 0, false, {
                         fileName: "[project]/app/page.jsx",
-                        lineNumber: 151,
-                        columnNumber: 17
+                        lineNumber: 159,
+                        columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 147,
-                columnNumber: 13
+                lineNumber: 155,
+                columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                 className: "flex-1 overflow-hidden relative",
@@ -1920,8 +1884,8 @@ function ChatPage() {
                                         className: "w-10 h-10 mb-6 text-primary mx-auto opacity-80"
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.jsx",
-                                        lineNumber: 166,
-                                        columnNumber: 37
+                                        lineNumber: 175,
+                                        columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                         className: "text-4xl md:text-5xl font-extrabold tracking-tighter text-foreground mb-4",
@@ -1931,23 +1895,23 @@ function ChatPage() {
                                                 children: "Synapse"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/page.jsx",
-                                                lineNumber: 169,
-                                                columnNumber: 41
+                                                lineNumber: 178,
+                                                columnNumber: 37
                                             }, this),
                                             " Knowledge Workspace"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/page.jsx",
-                                        lineNumber: 168,
-                                        columnNumber: 37
+                                        lineNumber: 177,
+                                        columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-lg text-muted-foreground max-w-2xl mx-auto mb-10 tracking-tight leading-relaxed",
                                         children: "Your autonomous agent for **advanced data analysis, contract drafting, and real-time claim verification** across PDFs, CSVs, and images."
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.jsx",
-                                        lineNumber: 172,
-                                        columnNumber: 37
+                                        lineNumber: 181,
+                                        columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex flex-col items-center space-y-4",
@@ -1958,8 +1922,8 @@ function ChatPage() {
                                                 disabled: isLoading
                                             }, void 0, false, {
                                                 fileName: "[project]/app/page.jsx",
-                                                lineNumber: 179,
-                                                columnNumber: 41
+                                                lineNumber: 188,
+                                                columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex w-full max-w-lg items-end gap-3",
@@ -1973,8 +1937,8 @@ function ChatPage() {
                                                         rows: 1
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/page.jsx",
-                                                        lineNumber: 183,
-                                                        columnNumber: 45
+                                                        lineNumber: 192,
+                                                        columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                                         onClick: handleSendMessage,
@@ -1985,42 +1949,42 @@ function ChatPage() {
                                                             className: "h-5 w-5 animate-spin"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/page.jsx",
-                                                            lineNumber: 197,
-                                                            columnNumber: 62
+                                                            lineNumber: 206,
+                                                            columnNumber: 58
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
                                                             className: "h-5 w-5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/page.jsx",
-                                                            lineNumber: 197,
-                                                            columnNumber: 109
+                                                            lineNumber: 206,
+                                                            columnNumber: 105
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/page.jsx",
-                                                        lineNumber: 191,
-                                                        columnNumber: 45
+                                                        lineNumber: 200,
+                                                        columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/page.jsx",
-                                                lineNumber: 182,
-                                                columnNumber: 41
+                                                lineNumber: 191,
+                                                columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/page.jsx",
-                                        lineNumber: 177,
-                                        columnNumber: 37
+                                        lineNumber: 186,
+                                        columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/page.jsx",
-                                lineNumber: 164,
-                                columnNumber: 33
+                                lineNumber: 173,
+                                columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/page.jsx",
-                            lineNumber: 162,
-                            columnNumber: 29
+                            lineNumber: 171,
+                            columnNumber: 25
                         }, this) : // *** CHAT MESSAGE RENDERING (when history exists) ***
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "p-4 md:p-6 pb-24 space-y-6",
@@ -2031,36 +1995,36 @@ function ChatPage() {
                                         setMessages: setMessages
                                     }, index, false, {
                                         fileName: "[project]/app/page.jsx",
-                                        lineNumber: 208,
-                                        columnNumber: 37
+                                        lineNumber: 218,
+                                        columnNumber: 33
                                     }, this)),
                                 isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ThinkingIndicator$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ThinkingIndicator"], {
-                                    text: messages.slice(-1)[0]?.metadata?.thought || "Thinking..."
+                                    text: messages.slice(-1)?.metadata?.thought || "Thinking..."
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.jsx",
-                                    lineNumber: 210,
-                                    columnNumber: 47
+                                    lineNumber: 220,
+                                    columnNumber: 43
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/page.jsx",
-                            lineNumber: 206,
-                            columnNumber: 29
+                            lineNumber: 216,
+                            columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/page.jsx",
-                        lineNumber: 158,
-                        columnNumber: 21
+                        lineNumber: 167,
+                        columnNumber: 17
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/page.jsx",
-                    lineNumber: 157,
-                    columnNumber: 17
+                    lineNumber: 166,
+                    columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 155,
-                columnNumber: 13
+                lineNumber: 164,
+                columnNumber: 9
             }, this),
             messages.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute bottom-0 left-0 right-0 px-6 py-4 bg-background border-t border-border/50 shadow-2xl z-10",
@@ -2074,15 +2038,15 @@ function ChatPage() {
                                     className: "w-4 h-4 text-primary"
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.jsx",
-                                    lineNumber: 225,
-                                    columnNumber: 33
+                                    lineNumber: 236,
+                                    columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: file.name
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.jsx",
-                                    lineNumber: 226,
-                                    columnNumber: 33
+                                    lineNumber: 237,
+                                    columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                     variant: "ghost",
@@ -2093,19 +2057,19 @@ function ChatPage() {
                                         className: "w-3 h-3"
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.jsx",
-                                        lineNumber: 228,
-                                        columnNumber: 37
+                                        lineNumber: 239,
+                                        columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.jsx",
-                                    lineNumber: 227,
-                                    columnNumber: 33
+                                    lineNumber: 238,
+                                    columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/page.jsx",
-                            lineNumber: 224,
-                            columnNumber: 29
+                            lineNumber: 235,
+                            columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
                             value: input,
@@ -2116,8 +2080,8 @@ function ChatPage() {
                             rows: 1
                         }, void 0, false, {
                             fileName: "[project]/app/page.jsx",
-                            lineNumber: 233,
-                            columnNumber: 25
+                            lineNumber: 244,
+                            columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                             onClick: handleSendMessage,
@@ -2128,36 +2092,36 @@ function ChatPage() {
                                 className: "h-5 w-5 animate-spin"
                             }, void 0, false, {
                                 fileName: "[project]/app/page.jsx",
-                                lineNumber: 242,
-                                columnNumber: 42
+                                lineNumber: 253,
+                                columnNumber: 38
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
                                 className: "h-5 w-5"
                             }, void 0, false, {
                                 fileName: "[project]/app/page.jsx",
-                                lineNumber: 242,
-                                columnNumber: 89
+                                lineNumber: 253,
+                                columnNumber: 85
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/page.jsx",
-                            lineNumber: 241,
-                            columnNumber: 25
+                            lineNumber: 252,
+                            columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/page.jsx",
-                    lineNumber: 220,
-                    columnNumber: 21
+                    lineNumber: 231,
+                    columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 219,
-                columnNumber: 17
+                lineNumber: 230,
+                columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/page.jsx",
-        lineNumber: 144,
-        columnNumber: 9
+        lineNumber: 152,
+        columnNumber: 5
     }, this));
 }
 }),

@@ -1,15 +1,19 @@
-[00:00:00.679] Server  LOG      ✓ Ready in 459ms
-[00:00:06.746] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:17.634] Browser ERROR   Streaming error: {}
-[00:01:28.127] Server  LOG      ✓ Compiled in 101ms
-[00:01:29.128] Browser ERROR   ./frontend/lib/streamingClient.js:80:1
+[00:00:00.594] Server  LOG      ✓ Ready in 379ms
+[00:00:04.614] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:00.290] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:02.999] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:19.522] Server  LOG      ✓ Compiled in 99ms
+[00:09:19.630] Browser ERROR   ./frontend/lib/streamingClient.js:30:15
 Parsing ecmascript source code failed
-  78 |         }
-  79 |     }
-> 80 | }
-     | ^
+  28 | ,
+  29 |     {
+> 30 |       method: "POST",
+     |               ^^^^^^
+  31 |       headers: { "Content-Type": "application/json" },
+  32 |       body: JSON.stringify(body),
+  33 |     }
 
-Expression expected
+Unexpected token `string literal (POST, "POST")`. Expected yield, an identifier, [ or {
 
 Import traces:
   Client Component Browser:
@@ -21,18 +25,457 @@ Import traces:
     ./frontend/lib/streamingClient.js [Client Component SSR]
     ./frontend/app/page.jsx [Client Component SSR]
     ./frontend/app/page.jsx [Server Component]
-[00:01:35.131] Server  LOG      ✓ Compiled in 109ms
-[00:01:51.541] Server  LOG      ✓ Compiled in 27ms
-[00:02:48.199] Browser ERROR   Fetch error: {}
-[00:02:48.199] Browser ERROR   Streaming error: {}
-[00:03:06.418] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:15.390] Browser ERROR   Fetch error: {}
-[00:03:15.390] Browser ERROR   Streaming error: {}
-[00:06:53.523] Server  LOG      ✓ Compiled in 116ms
-[00:07:09.067] Server  LOG        Reload env: .env
-[00:07:23.695] Server  LOG        Reload env: .env.local
-[00:07:39.328] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:07:45.683] Browser ERROR   Fetch error: {}
-[00:07:45.683] Browser ERROR   Streaming error: {}
-[00:18:53.810] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:53.532] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:34.053] Server  LOG      ✓ Compiled in 37ms
+[00:11:39.560] Server  LOG      ✓ Compiled in 30ms
+[00:13:21.120] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:20:31.161] Browser LOG     data: {"type":"text","data":"Processing started..."}
+
+
+[00:20:31.757] Browser LOG     data: {"type":"text","data":"Analyzing your input..."}
+
+
+[00:20:32.359] Browser LOG     data: {"type":"text","data":"Received: hello"}
+
+
+[00:20:32.962] Browser LOG     data: {"type":"text","data":"Answer generation complete."}
+
+data: {"type":"done","data":"Stream complete."}
+
+
+[00:21:49.030] Server  LOG      ✓ Compiled in 126ms
+[00:24:21.376] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:08.047] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:31:47.389] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:32:24.548] Browser LOG     SEND BUTTON CLICKED
+[00:35:03.567] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:36:36.508] Server  LOG      ✓ Compiled in 148ms
+[00:37:22.762] Server  LOG      ✓ Compiled in 34ms
+[00:37:41.269] Browser ERROR   Streaming error: {}
+[00:38:50.709] Server  LOG      ✓ Compiled in 26ms
+[00:39:00.025] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:04.097] Browser LOG     STREAM CHUNK → {"data":"Processing started...","type":"text"}
+[00:39:04.660] Browser LOG     STREAM CHUNK → {"data":"Analyzing your input...","type":"text"}
+[00:39:05.262] Browser LOG     STREAM CHUNK → {"data":"Received: ","type":"text"}
+[00:39:05.863] Browser LOG     STREAM CHUNK → {"data":"Answer generation complete.","type":"text"}
+[00:39:05.863] Browser LOG     STREAM CHUNK → {"data":"Stream complete.","type":"done"}
+[00:39:34.754] Server  LOG      ✓ Compiled in 66ms
+[00:39:41.653] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:15.675] Server  LOG      ✓ Compiled in 19ms
+[00:40:21.730] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:07.558] Server  LOG      ✓ Compiled in 85ms
+[00:41:08.630] Browser ERROR   ./frontend/lib/streamingClient.js:76:4
+Parsing ecmascript source code failed
+  74 |       console.error("Chunk JSON parse error:", err);
+  75 |     }
+> 76 |   }
+     |    ^
+  77 |
+  78 |   // Only
+  79 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./frontend/lib/streamingClient.js [Client Component Browser]
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/lib/streamingClient.js [Client Component SSR]
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:41:12.634] Browser ERROR   ./frontend/lib/streamingClient.js:76:4
+Parsing ecmascript source code failed
+  74 |       console.error("Chunk JSON parse error:", err);
+  75 |     }
+> 76 |   }
+     |    ^
+  77 |
+  78 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./frontend/lib/streamingClient.js [Client Component Browser]
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/lib/streamingClient.js [Client Component SSR]
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:41:31.785] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:42:21.155] Server  LOG      ✓ Compiled in 19ms
+[00:42:33.166] Server  ERROR    ⨯ ReferenceError: useState is not defined
+[00:42:33.326] Server  ERROR    ⨯ ReferenceError: useState is not defined
+[00:42:33.530] Server  ERROR    ⨯ ReferenceError: useState is not defined
+[00:42:33.665] Server  ERROR    ⨯ ReferenceError: useState is not defined
+[00:42:34.494] Browser ERROR   uncaughtError: ReferenceError: useState is not defined
+[00:42:54.348] Server  LOG      ✓ Compiled in 268ms
+[00:42:55.016] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:43:25.387] Server  LOG      ✓ Compiled in 77ms
+[00:43:25.632] Browser ERROR   ./frontend/app/page.jsx:88:9
+Parsing ecmascript source code failed
+  86 |
+  87 |         // 3. Start streaming from the backend proxy
+> 88 |         await streamAgentResponse(formData, (chunk) => {
+     |         ^^^^^
+  89 |             setMessages((prev) => {
+  90 |                 const newMessages = [...prev];
+  91 |                 const currentMessageIndex = newMessages.findIndex((m) => m.id === agentMessageId);
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:43:32.642] Browser ERROR   ./frontend/app/page.jsx:88:9
+Parsing ecmascript source code failed
+  86 |
+  87 |         // 3. Start streaming from the backend proxy
+> 88 |         await streamAgentResponse(formData, (chunk) => {
+     |         ^^^^^
+  89 |             setMessages((prev) => {
+  90 |                 const newMessages = [...prev];
+  91 |                 const currentMessageIndex = newMessages.findIndex((m) => m.id === agentMessageId);
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:44:01.706] Server  LOG      ✓ Compiled in 54ms
+[00:44:02.631] Browser ERROR   ./frontend/app/page.jsx:58:11
+Ecmascript file had an error
+  56 |
+  57 |
+> 58 |     const formData = new FormData();
+     |           ^^^^^^^^
+  59 |     formData.append('message', userMessage.content || `Analyze the uploaded file: ${file.name}`);
+  60 |     if (file) {
+  61 |         formData.append('file', file);
+
+the name `formData` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:45:02.942] Server  LOG      ✓ Compiled in 13ms
+[00:45:58.149] Server  LOG      ✓ Compiled in 43ms
+[00:46:24.018] Server  LOG      ✓ Compiled in 33ms
+[00:47:18.254] Server  LOG      ✓ Compiled in 98ms
+[00:47:18.631] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:47:18.631] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:47:23.945] Server  ERROR    ⨯ ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+
+
+
+./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+
+
+[00:47:24.433] Browser ERROR   uncaughtError: Error: ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+
+
+[00:47:24.605] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:47:24.605] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:47:24.605] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:47:24.605] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:48:46.609] Server  LOG      ✓ Compiled in 77ms
+[00:48:47.164] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:57.815] Server  LOG      ✓ Compiled in 96ms
+[00:49:58.631] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:49:58.631] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:50:23.192] Server  LOG      ✓ Compiled in 6ms
+[00:50:23.632] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:50:23.632] Browser ERROR   ./frontend/app/page.jsx:9:1
+Export streamAgentResponse doesn't exist in target module
+   7 | import { Card, CardContent } from '@/components/ui/card';
+   8 | import { ScrollArea } from '@/components/ui/scroll-area';
+>  9 | import { streamAgentResponse } from '@/lib/streamingClient';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 | import { MessageBubble } from '@/components/MessageBubble';
+  11 | import { FileUploadBox } from '@/components/FileUploadBox';
+  12 | import { ThinkingIndicator } from '@/components/ThinkingIndicator';
+
+The export streamAgentResponse was not found in module [project]/frontend/lib/streamingClient.js [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.jsx [Client Component Browser]
+    ./frontend/app/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.jsx [Client Component SSR]
+    ./frontend/app/page.jsx [Server Component]
+[00:51:40.910] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
